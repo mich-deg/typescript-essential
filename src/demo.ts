@@ -6,7 +6,7 @@
 
 interface Contact extends Address {
   id: number;
-  name: string;
+  name: ContactName;
   birthDate?: Date;
 }
 
@@ -25,3 +25,5 @@ let primaryContact: Contact = {
   postalCode: "1000",
   line1: "addis 100",
 };
+
+type ContactName = string;
