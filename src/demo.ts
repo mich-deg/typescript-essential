@@ -36,14 +36,30 @@ let primaryContact: Contact = {
 
 type ContactName = string;
 
+// typing function
 interface Contact1 {
   id: number;
   name: string;
 }
 
-function clone<T1, T2>(source: T1): T2 {
+function clone(source: Contact1): Contact1 {
   return Object.apply({}, source);
 }
 
 const a: Contact1 = { id: 123, name: "Mike Chapple" };
 const b = clone(a);
+
+// Generics
+function cloneGeneric<T>(source: T): T {
+  return Object.apply({}, source);
+}
+
+const aG: Contact1 = { id: 123, name: "Mike Chapple" };
+const bG = clone(aG);
+
+const dateRange = { startDate: Date.now(), endDate: Date.now() };
+const dateRangeCopy = cloneGeneric(dateRange);
+
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
