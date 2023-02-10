@@ -3,23 +3,24 @@
 //   name;
 //   birthDate;
 
-import { type } from "jquery";
-
 // }
 type ContactName = string;
+
+type ContactBirthDate = Date | string | number;
 interface Contact extends Address {
   id: number;
   name: ContactName;
-  birthDate?: Date | string | number;
+  birthDate?: ContactBirthDate;
   status: ContactStatus;
 }
 
-enum ContactStatus {
-  Active = "active",
-  Inactive = "inactive",
-  New = "new",
-}
+// enum ContactStatus {
+//   Active = "active",
+//   Inactive = "inactive",
+//   New = "new",
+// }
 
+type ContactStatus = "active" | "inactive" | "new";
 interface Address {
   line1: string;
   line2?: string;
@@ -34,18 +35,17 @@ let primaryContact: Contact = {
   birthDate: new Date("12-12-1990"),
   postalCode: "1000",
   line1: "addis 100",
-  status: ContactStatus.Active,
+  status: "active",
 };
 
-function getBirthDate(contact: Contact){
-  if(typeof contact.birthDate === "number"){
+function getBirthDate(contact: Contact) {
+  if (typeof contact.birthDate === "number") {
     return new Date(contact.birthDate);
+  } else if (typeof contact.birthDate === "string") {
+    return Date.parse(contact.birthDate);
+  } else {
+    return contact.birthDate;
   }
-  else if(typeof contact.birthDate === "string"){
-    return Date.parse(contact.birthDate)
-}
-else {
-  return contact.birthDate
 }
 
 // typing function
@@ -71,7 +71,3 @@ const bG = clone(aG);
 
 const dateRange = { startDate: Date.now(), endDate: Date.now() };
 const dateRangeCopy = cloneGeneric(dateRange);
-
-function identity<Type>(arg: Type): Type {
-  return arg;
-}
