@@ -2,12 +2,15 @@
 //   id;
 //   name;
 //   birthDate;
-// }
 
+import { type } from "jquery";
+
+// }
+type ContactName = string;
 interface Contact extends Address {
   id: number;
   name: ContactName;
-  birthDate?: Date;
+  birthDate?: Date | string | number;
   status: ContactStatus;
 }
 
@@ -34,7 +37,16 @@ let primaryContact: Contact = {
   status: ContactStatus.Active,
 };
 
-type ContactName = string;
+function getBirthDate(contact: Contact){
+  if(typeof contact.birthDate === "number"){
+    return new Date(contact.birthDate);
+  }
+  else if(typeof contact.birthDate === "string"){
+    return Date.parse(contact.birthDate)
+}
+else {
+  return contact.birthDate
+}
 
 // typing function
 interface Contact1 {
