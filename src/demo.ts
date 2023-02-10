@@ -35,3 +35,15 @@ let primaryContact: Contact = {
 };
 
 type ContactName = string;
+
+interface Contact1 {
+  id: number;
+  name: string;
+}
+
+function clone<T1, T2>(source: T1): T2 {
+  return Object.apply({}, source);
+}
+
+const a: Contact1 = { id: 123, name: "Mike Chapple" };
+const b = clone(a);
