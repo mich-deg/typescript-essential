@@ -1,19 +1,25 @@
 // class Contact {
 //   id;
 //   name;
-//   birthDate;
+//   birthDate?;
 
 // }
 type ContactName = string;
 
 type ContactBirthDate = Date | string | number;
-interface Contact extends Address {
+// interface Contact extends Address {
+//   id: number;
+//   name: ContactName;
+//   birthDate?: ContactBirthDate;
+//   status: ContactStatus;
+// }
+
+interface Contact {
   id: number;
   name: ContactName;
   birthDate?: ContactBirthDate;
-  status: ContactStatus;
+  status?: ContactStatus;
 }
-
 // enum ContactStatus {
 //   Active = "active",
 //   Inactive = "inactive",
@@ -33,9 +39,9 @@ let primaryContact: Contact = {
   id: 12345,
   name: "Michael Johnson",
   birthDate: new Date("12-12-1990"),
-  postalCode: "1000",
-  line1: "addis 100",
-  status: "active",
+  // postalCode: "1000",
+  // line1: "addis 100",
+  // status: "active",
 };
 
 function getBirthDate(contact: Contact) {
@@ -71,3 +77,25 @@ const bG = clone(aG);
 
 const dateRange = { startDate: Date.now(), endDate: Date.now() };
 const dateRangeCopy = cloneGeneric(dateRange);
+
+//keyof type operator
+
+type ContactFields = keyof Contact;
+
+const field: ContactFields = "name";
+
+function toContact(nameOrContact: string | Contact): Contact {
+  if (typeof nameOrContact === "object") {
+    return {
+      id: nameOrContact.id,
+      name: nameOrContact.name,
+      status: nameOrContact.status,
+    };
+  } else {
+    return {
+      id: 0,
+      name: nameOrContact,
+      status: "active",
+    };
+  }
+}
