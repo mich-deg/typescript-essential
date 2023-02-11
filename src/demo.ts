@@ -84,6 +84,8 @@ type ContactFields = keyof Contact;
 
 const field: ContactFields = "name";
 
+// typeof operator
+
 function toContact(nameOrContact: string | Contact): Contact {
   if (typeof nameOrContact === "object") {
     return {
