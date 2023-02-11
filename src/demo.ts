@@ -113,3 +113,23 @@ interface ContactEvent {
 // defining dynamic but limited types with records
 let X: Record<string, string | number> = { name: "Wruce Bayne" };
 X.number = 1234;
+
+// Partial type - constructs a type with all properties of Type set to optional.
+
+interface Todo {
+  title: string;
+  description: string;
+}
+
+function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
+  return { ...todo, ...fieldsToUpdate };
+}
+
+const todo1 = {
+  title: "organize desk",
+  description: "clear clutter",
+};
+
+const todo2 = updateTodo(todo1, {
+  description: "throw out trash",
+});
