@@ -101,3 +101,11 @@ function toContact(nameOrContact: string | Contact): Contact {
     };
   }
 }
+
+//Indexed access types
+
+type awesome = Contact["id"];
+
+interface ContactEvent {
+  contactId: Contact["id"];
+}
