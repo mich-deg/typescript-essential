@@ -136,14 +136,14 @@ const todo2 = updateTodo(todo1, {
 
 // Omit type
 
-interface Todo {
+interface TodoOmit {
   title: string;
   description: string;
   completed: boolean;
   createdAt: number;
 }
 
-type TodoPreview = Omit<Todo, "description">;
+type TodoPreview = Omit<TodoOmit, "description">;
 
 const todo: TodoPreview = {
   title: "Clean room",
