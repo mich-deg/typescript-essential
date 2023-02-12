@@ -150,3 +150,18 @@ const todo: TodoPreview = {
   completed: false,
   createdAt: 1615544252770,
 };
+
+// Pick - constructs a type by picking the set of properties Keys from Type.
+
+interface TodoPick {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+type TodoPreviewPick = Pick<TodoPick, "title" | "completed">;
+
+const todoP: TodoPreviewPick = {
+  title: "Clean room",
+  completed: false,
+};
