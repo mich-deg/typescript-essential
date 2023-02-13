@@ -175,3 +175,17 @@ interface Props {
 const obj: Props = { a: 5 };
 
 const obj2: Required<Props> = { a: 5, b: "foo" };
+
+// Declaration merging
+
+interface Customer {
+  /** saves the customer somewhere */
+  save(): void;
+}
+
+class Customer {}
+
+const customer = new Customer();
+customer.save = function () {};
+
+const myVar = window.My_VAR;
